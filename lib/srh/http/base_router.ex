@@ -21,6 +21,10 @@ defmodule Srh.Http.BaseRouter do
     do_command_request(conn, &CommandHandler.handle_command_array(&1, &2))
   end
 
+  options "/pipeline" do
+    handle_response({:ok, "Welcome to Serverless Redis HTTP!"}, conn)
+  end
+
   post "/multi-exec" do
     do_command_request(conn, &CommandHandler.handle_command_transaction_array(&1, &2))
   end
@@ -105,6 +109,9 @@ defmodule Srh.Http.BaseRouter do
 
     conn
     |> put_resp_header("content-type", "application/json")
+    |> put_resp_header("Access-Control-Allow-Origin", "*")
+    |> put_resp_header("Access-Control-Allow-Methods", "POST, PUT, PATCH, DELETE, OPTIONS")
+    |> put_resp_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Upstash-Encoding")
     |> send_resp(code, create_response_body(resp_data))
   end
 

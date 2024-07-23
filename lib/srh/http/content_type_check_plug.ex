@@ -35,6 +35,9 @@ defmodule Srh.Http.ContentTypeCheckPlug do
         # Return a custom error, ensuring the same format as the other errors
         conn
         |> put_resp_content_type("application/json")
+        |> put_resp_header("Access-Control-Allow-Origin", "*")
+        |> put_resp_header("Access-Control-Allow-Methods", "POST, PUT, PATCH, DELETE, OPTIONS")
+        |> put_resp_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, , Upstash-Encoding")
         |> send_resp(
           400,
           Jason.encode!(%{error: "Invalid content type. Expected application/json."})
