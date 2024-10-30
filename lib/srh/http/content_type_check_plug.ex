@@ -37,7 +37,7 @@ defmodule Srh.Http.ContentTypeCheckPlug do
         |> put_resp_content_type("application/json")
         |> put_resp_header("Access-Control-Allow-Origin", "*")
         |> put_resp_header("Access-Control-Allow-Methods", "POST, PUT, PATCH, DELETE, OPTIONS")
-        |> put_resp_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, , Upstash-Encoding")
+        |> put_resp_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, , Upstash-Encoding, Upstash-Sync-Token")
         |> send_resp(
           400,
           Jason.encode!(%{error: "Invalid content type. Expected application/json."})

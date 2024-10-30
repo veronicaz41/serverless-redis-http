@@ -111,7 +111,7 @@ defmodule Srh.Http.BaseRouter do
     |> put_resp_header("content-type", "application/json")
     |> put_resp_header("Access-Control-Allow-Origin", "*")
     |> put_resp_header("Access-Control-Allow-Methods", "POST, PUT, PATCH, DELETE, OPTIONS")
-    |> put_resp_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Upstash-Encoding")
+    |> put_resp_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Upstash-Encoding, Upstash-Sync-Token")
     |> send_resp(code, create_response_body(resp_data))
   end
 
